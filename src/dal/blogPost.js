@@ -14,6 +14,17 @@ export default class BlogPost {
         return blogPosts;
     };
 
+    async getPublishedBlogPosts(blogId) {
+        const BlogPost = mongoose.model('blogPost', blogPostSchema);
+        try {
+            const blogPosts = await BlogPost.find({ blogId: blogId, draft: false });
+            return blogPosts;
+
+        } catch (e) { console.error(e) }
+        return [];
+    };
+    
+
     async getBlogPost(postId) {
         const BlogPost = mongoose.model('blogPost', blogPostSchema);
         const blogPost = await BlogPost.findById(postId);

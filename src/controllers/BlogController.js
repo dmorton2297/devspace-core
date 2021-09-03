@@ -31,7 +31,7 @@ class BlogController {
 
     async getBlogByEmail(email) {
         const blog = await this.dal.getBlogByEmail(email);
-        const posts = await this.postDal.getBlogPosts (blog._id);
+        const posts = await this.postDal.getPublishedBlogPosts(blog._id);
         const p = posts.sort((a, b) => {
             if (b.createdAt < a.createdAt) {
                 return -1;
@@ -44,9 +44,7 @@ class BlogController {
         return {...blog, blogPosts: p };
     }
 
-    async createBlog(blog, userId) {
-        console.log(moment.format());
-        
+    async createBlog(blog, userId) {        
         const b = await this.dal.createBlog({ ...blog, userId });
         return b;
     }   
@@ -63,7 +61,6 @@ class BlogController {
 
 
     async createBlogPost(blog, userId, email) {
-
         const createdAt = moment().format();
         const updatedAt = moment().format();
         const p = await this.postDal.createBlogPost({
@@ -72,7 +69,8 @@ class BlogController {
             userId: userId,
             userEmail: email,
             createdAt,
-            updatedAt
+            updatedAt,
+            draft: true,
         });
         return p;
     }

@@ -71,6 +71,7 @@ app.use((req, res, next) => {
             logger.debug('ID Token from request verified.');
             logger.debug(`Extracted user emai: ${decodedToken.email}`);
             logger.info('Request Authenticated');
+            logger.info(`Path: ${req.path}`)
             req.authenticated = true;
             req.authEmail = decodedToken.email;
             next();

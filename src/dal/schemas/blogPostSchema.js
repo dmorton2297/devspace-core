@@ -12,6 +12,7 @@ const blogPostSchema = new mongoose.Schema({
     blogId: String,
     createdAt: String,
     updatedAt: String,
+    draft: Boolean,
 });
 
 export default blogPostSchema;
