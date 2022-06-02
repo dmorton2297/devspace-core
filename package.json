@@ -28,7 +28,7 @@
     "install": "^0.13.0",
     "moment": "^2.24.0",
     "mongoose": "^5.9.11",
-    "npm": "^7.0.12"
+    "npm": "^8.11.0"
   },
   "devDependencies": {}
 }
